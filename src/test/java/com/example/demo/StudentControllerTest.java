@@ -25,33 +25,24 @@ import org.springframework.web.servlet.ModelAndView;
 public class StudentControllerTest {
 
 	private MockMvc mockMvc;
-	
+
 	@Autowired
 	private WebApplicationContext webApplicationContext;
-	
+
 	@Autowired
 	private StudentController studentController;
-	
+
 	@Before
 	public void setUp() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	}
-	
+
 	@Test
 	public void contextLoads() {
 	}
 
 	@Test
-	public void studentController_getAllStudentsTest() {
-		List<Student> students = studentController.getAllStudents();
-		
-		assertEquals(1, students.size());
-	}
-	
-	@Test
 	public void getAllTest() throws Exception {
 		MvcResult result = mockMvc.perform(get("/get/all")).andReturn();
-		ModelAndView mv = result.getModelAndView();
 	}
 }
-
