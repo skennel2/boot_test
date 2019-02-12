@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/student")
-public class StudentController {
+public class StudentRestController {
 
 	@Autowired
 	private StudentRepository studentRepository;

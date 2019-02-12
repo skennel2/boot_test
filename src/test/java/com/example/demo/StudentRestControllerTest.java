@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @WebAppConfiguration
-public class StudentControllerTest {
+public class StudentRestControllerTest {
 
 	private MockMvc mockMvc;
 
@@ -30,7 +30,7 @@ public class StudentControllerTest {
 	private WebApplicationContext webApplicationContext;
 
 	@Autowired
-	private StudentController studentController;
+	private StudentRestController studentController;
 
 	@Before
 	public void setUp() {
