@@ -10,11 +10,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.core.env.Environment;
 
+import com.example.demo.domain.Student;
+import com.example.demo.repository.MemberRepository;
+import com.example.demo.repository.StudentRepository;
+
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
 
 	@Autowired
 	private StudentRepository studentRepository;
+	
+	@Autowired
+	private MemberRepository memberRepository;	
 
 	public static void main(String[] args) {
 		new SpringApplicationBuilder().banner(new Banner() {
@@ -24,7 +31,6 @@ public class DemoApplication implements CommandLineRunner {
 				out.println("Custom Banner");
 				out.println("#############");
 			}
-
 		})
 		.bannerMode(Mode.LOG)
 		.logStartupInfo(true) // 시동시 로깅 여부 기본값 true
@@ -38,5 +44,7 @@ public class DemoApplication implements CommandLineRunner {
 
 		Student student1 = new Student("Na Yun Su");
 		studentRepository.save(student1);
+		
+		memberRepository.deleteAll();
 	}
 }
