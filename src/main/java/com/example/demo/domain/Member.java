@@ -77,6 +77,14 @@ public class Member {
 		this.creationDate = creationDate;
 	}
 
+	public MemberRole getRole() {
+		return role;
+	}
+
+	public void setRole(MemberRole role) {
+		this.role = role;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [id=" + id + ", loginId=" + loginId + ", password=" + password + ", creationDate=" + creationDate
