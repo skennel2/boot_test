@@ -18,19 +18,24 @@ public class MemberController {
 
 	@Autowired
 	MemberRepository memberRepo;
+	
+	private final String BASE_URL = "";  
 
 	@RequestMapping(path = "/join", method = RequestMethod.POST)
-	public ResponseEntity<Void> joinUs(@RequestParam String name, @RequestParam String password) {
-		Member member = new Member(name, password, MemberRole.Normal);
+	public String joinUs(@RequestParam String loginId, @RequestParam String password) {
+		Member member = new Member(loginId, password, MemberRole.Normal);
 		memberRepo.save(member);
 		
-		System.out.println(member.toString());
-		
-		return new ResponseEntity<Void>(HttpStatus.CREATED);
+		return BASE_URL + "login";
 	}
 
 	@RequestMapping(path = "/join", method = RequestMethod.GET)
 	public String joinUs() {
-		return "join";
+		return BASE_URL + "join";
+	}
+	
+	@RequestMapping(path = "/login", method = RequestMethod.GET)
+	public String login() {
+		return BASE_URL + "login";
 	}
 }
