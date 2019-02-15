@@ -22,9 +22,7 @@ public class DemoApplication implements CommandLineRunner {
 		new SpringApplicationBuilder().banner(new Banner() {
 			@Override
 			public void printBanner(Environment environment, Class<?> sourceClass, PrintStream out) {
-				out.println("#############");
 				out.println("Custom Banner");
-				out.println("#############");
 			}
 		})
 		.bannerMode(Mode.LOG)
