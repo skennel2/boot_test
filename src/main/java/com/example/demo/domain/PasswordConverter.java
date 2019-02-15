@@ -3,7 +3,6 @@ package com.example.demo.domain;
 import java.security.Key;
 import java.util.Base64;
 
-import javax.annotation.PostConstruct;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.persistence.AttributeConverter;

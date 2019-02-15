@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import com.example.demo.domain.Member;
 import com.example.demo.domain.SecurityMember;
 import com.example.demo.repository.MemberRepository;
 
@@ -16,8 +17,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private MemberRepository memberRepository;
 
 	@Override
-	public UserDetails loadUserByUsername(String loginId) throws UsernameNotFoundException {
-		return new SecurityMember(memberRepository.findByLoginId(loginId));
+	public UserDetails loadUserByUsername(String loginId) throws UsernameNotFoundException {		
+		Member member = memberRepository.findByLoginId(loginId);
+
+		return new SecurityMember(member);
 	}
 
 }
