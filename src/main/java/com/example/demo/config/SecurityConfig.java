@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			public String encode(CharSequence rawPassword) {
 				return rawPassword.toString();
 			}
-		});
+		});	
 	}
 	
 	@Override
