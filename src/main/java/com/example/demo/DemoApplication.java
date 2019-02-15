@@ -10,16 +10,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.core.env.Environment;
 
-import com.example.demo.domain.Student;
 import com.example.demo.repository.MemberRepository;
-import com.example.demo.repository.StudentRepository;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
 
-	@Autowired
-	private StudentRepository studentRepository;
-	
 	@Autowired
 	private MemberRepository memberRepository;	
 
@@ -40,11 +35,6 @@ public class DemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		studentRepository.deleteAll();
-
-		Student student1 = new Student("Na Yun Su");
-		studentRepository.save(student1);
-		
 		memberRepository.deleteAll();
 	}
 }

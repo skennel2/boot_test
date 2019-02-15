@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+	protected void configure(HttpSecurity http) throws Exception {		
 		http.authorizeRequests()
 			.antMatchers("/admin/**").hasRole(MemberRole.Admin.name())
 			.antMatchers("/index/**").authenticated()
@@ -44,10 +44,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 			.formLogin()
 			.loginPage("/member/login")
-			.loginProcessingUrl("/login")
-			.defaultSuccessUrl("/student/")
+			.loginProcessingUrl("/member/login")
+			.defaultSuccessUrl("/member/login/success")
+			.failureForwardUrl("/member/login/fail")
 				.and()
-			.csrf();
-		
+			.csrf();		
 	}
 }
