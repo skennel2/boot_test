@@ -8,10 +8,12 @@
 	<h2>Join</h2>	
 	<form action="#" th:action="@{/member/join}" method="post">
 		<div>
-			Id: <input type="text" name="loginId"/>
+			<label for="loginId">ID</label>
+			<input type="text" name="loginId"/>
 		</div>
 		<div>
-			pw: <input type="text" name="password"/>
+			<label for="loginId">Password</label>
+			<input type="password" name="password"/>
 		</div>
 		<div>
 			<input type="submit" value="Submit" /> 

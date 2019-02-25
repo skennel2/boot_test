@@ -9,10 +9,12 @@
  	<input type ="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> 
 	<form th:action="@{/security/login}" method="post">
 		<div>
-			Id: <input type="text" name="username"/>
+			<label for="loginId">ID</label>
+			<input type="text" name="loginId"/>
 		</div>
 		<div>
-			pw: <input type="text" name="password"/>
+			<label for="loginId">Password</label>
+			<input type="password" name="password"/>
 		</div>
 		<div>
 			<input type="submit" value="Submit" /> 
