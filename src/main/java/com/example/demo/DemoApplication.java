@@ -10,6 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.core.env.Environment;
 
+import com.example.demo.domain.Member;
+import com.example.demo.domain.MemberRole;
 import com.example.demo.repository.MemberRepository;
 
 @SpringBootApplication
@@ -34,5 +36,8 @@ public class DemoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		memberRepository.deleteAll();
+		
+		Member testMember = new Member("skennel", "1234", MemberRole.Admin);
+		memberRepository.save(testMember);
 	}
 }
