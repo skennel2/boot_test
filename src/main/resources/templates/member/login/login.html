@@ -10,21 +10,21 @@
 	<form th:action="@{/security/login}" method="post">
 		<div>
 			<label for="loginId">ID</label>
-			<input type="text" name="loginId"/>
+			<input type="text" id="loginId" name="loginId" th:value = '${before_id}'/>
 		</div>
 		<div>
 			<label for="loginId">Password</label>
-			<input type="password" name="password"/>
+			<input type="password" id="password" name="password"/>
 		</div>
 		<div>
 			<input type="submit" value="Submit" /> 
 			<input type="reset"value="Reset" />
 		</div>
 	</form>
-	<div th:if = "${ERROR_CODE != null}">
-		<div th:if = '${ERROR_CODE.equals("NOT_EXISTS")}'>
-			아이디나 패스워드를 확인해주세요.
-		</div>
-	</div>	
+	
+	<div th:text = '${failure_message}'>
+	</div>
+	<div th:if = "${failure_message != null}">
+	</div>
 </body>
 </html>

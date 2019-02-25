@@ -22,8 +22,9 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
-		response.setStatus(HttpStatus.UNAUTHORIZED.value());	
-		request.setAttribute("ERROR_CODE", "NOT_EXISTS");
+		response.setStatus(HttpStatus.UNAUTHORIZED.value());
+		request.setAttribute("failure_message", "아이디나 비밀번호를 확인해주세요.");
+		request.setAttribute("before_id", request.getParameter("loginId")); // TODO ? request에서 parameter랑 attribute의 차이는?
 		request.getRequestDispatcher("/member/login?error=true").forward(request, response);
 	}
 
