@@ -21,5 +21,10 @@
 			<input type="reset"value="Reset" />
 		</div>
 	</form>
+	<div th:if = "${ERROR_CODE != null}">
+		<div th:if = '${ERROR_CODE.equals("NOT_EXISTS")}'>
+			아이디나 패스워드를 확인해주세요.
+		</div>
+	</div>	
 </body>
 </html>

@@ -28,7 +28,7 @@ public class DemoApplication implements CommandLineRunner {
 		.bannerMode(Mode.LOG)
 		.logStartupInfo(true) // 시동시 로깅 여부 기본값 true
 		.sources(DemoApplication.class)
-		.run(args);
+		.run(args);		
 	}
 
 	@Override

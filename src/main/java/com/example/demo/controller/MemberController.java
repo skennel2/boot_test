@@ -2,9 +2,11 @@ package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.domain.Member;
 import com.example.demo.domain.MemberRole;
@@ -32,6 +34,13 @@ public class MemberController {
 		return BASE_URL + "/join/join";
 	}
 
+	@RequestMapping(path = "/login", method = RequestMethod.POST)
+	public ModelAndView loginPost() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName(BASE_URL + "/login/login");
+		return mv;
+	}
+	
 	@RequestMapping(path = "/login", method = RequestMethod.GET)
 	public String login() {
 		return BASE_URL + "/login/login";
@@ -45,5 +54,10 @@ public class MemberController {
 	@RequestMapping(path = "/login/fail", method = RequestMethod.GET)
 	public String loginFail() {
 		return BASE_URL + "/login/fail";
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public void handleException(Exception ex) {
+		ex.printStackTrace();
 	}
 }

@@ -38,24 +38,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {		
-		http.authorizeRequests()
-			.antMatchers("/admin/**").hasRole(MemberRole.Admin.name())
-			.antMatchers("/index/**").authenticated()
-			.antMatchers("/student/**").authenticated()
-			.antMatchers("/member/login").permitAll()
-			.antMatchers("/member/join").permitAll()
+		http
+			.authorizeRequests()
+				.antMatchers("/admin/**").hasRole(MemberRole.Admin.name())
+				.antMatchers("/index/**").authenticated()
+				.antMatchers("/student/**").authenticated()
+				.antMatchers("/member/login").permitAll()
+				.antMatchers("/member/join").permitAll()
 				.and()
 			.formLogin()
-			.loginPage("/member/login")
-			.loginProcessingUrl("/security/login")
-			.defaultSuccessUrl("/member/login/success")
-			//.failureForwardUrl("/member/login/fail")
-			.failureHandler(authFailureHander())
+				.loginPage("/member/login")
+				.loginProcessingUrl("/security/login")
+				.defaultSuccessUrl("/member/login/success")			
+				.failureHandler(authFailureHander())
 				.and()
 			.csrf()
 				.and()
 			.logout()
-			.logoutUrl("/security/logout");
+				.logoutUrl("/security/logout");
 	}
 	
 	@Bean
