@@ -26,7 +26,7 @@ public class MemberController {
 
 		return BASE_URL + "/login/login";
 	}
-
+	
 	@RequestMapping(path = "/join", method = RequestMethod.GET)
 	public String joinUs() {
 		return BASE_URL + "/join/join";

@@ -1,14 +1,18 @@
 package com.example.demo.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
 import com.example.demo.domain.MemberRole;
+import com.example.demo.security.LoginFailureHandler;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -45,11 +49,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.loginPage("/member/login")
 			.loginProcessingUrl("/security/login")
 			.defaultSuccessUrl("/member/login/success")
-			.failureForwardUrl("/member/login/fail")
+			//.failureForwardUrl("/member/login/fail")
+			.failureHandler(authFailureHander())
 				.and()
 			.csrf()
 				.and()
 			.logout()
-			.logoutUrl("/security/logout");		
+			.logoutUrl("/security/logout");
+	}
+	
+	@Bean
+	AuthenticationFailureHandler authFailureHander() {
+		return new LoginFailureHandler();
 	}
 }
