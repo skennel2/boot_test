@@ -3,6 +3,7 @@ package com.example.demo.domain;
 import java.security.Key;
 import java.util.Base64;
 
+import javax.annotation.PostConstruct;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.persistence.AttributeConverter;
@@ -18,11 +19,18 @@ public class PasswordConverter implements AttributeConverter<String, String> {
 	private static final String ALGORITHM = "AES/ECB/PKCS5Padding";
 
 	@Value("${custom.secret.key}")
-	private String _secretKey;
+	private String secretKey;
+	
+	private byte[] secretKeyByte;
+	
+	@PostConstruct
+	public void init() {
+		secretKeyByte = secretKey.getBytes();
+	}
 	
 	@Override
 	public String convertToDatabaseColumn(String password) {
-		Key key = new SecretKeySpec(_secretKey.getBytes(), "AES");
+		Key key = new SecretKeySpec(secretKeyByte, "AES");
 		try {
 			Cipher cipher = Cipher.getInstance(ALGORITHM);
 			cipher.init(Cipher.ENCRYPT_MODE, key);
@@ -34,7 +42,7 @@ public class PasswordConverter implements AttributeConverter<String, String> {
 
 	@Override
 	public String convertToEntityAttribute(String valueInDB) {
-		Key key = new SecretKeySpec(_secretKey.getBytes(), "AES");
+		Key key = new SecretKeySpec(secretKeyByte, "AES");
 		try {
 			Cipher c = Cipher.getInstance(ALGORITHM);
 			c.init(Cipher.DECRYPT_MODE, key);
