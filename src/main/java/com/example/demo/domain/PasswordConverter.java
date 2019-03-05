@@ -16,7 +16,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class PasswordConverter implements AttributeConverter<String, String> {
 
-	private static final String ALGORITHM = "AES/ECB/PKCS5Padding";
+	@Value("${custom.secret.algorithm}")
+	private static String ALGORITHM;
 
 	@Value("${custom.secret.key}")
 	private String secretKey;
